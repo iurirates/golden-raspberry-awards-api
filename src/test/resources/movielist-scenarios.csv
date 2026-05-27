@@ -1,0 +1,14 @@
+year;title;studios;producers;winner
+2000;Movie A1;Studio One;Prod A and Prod E;yes
+2001;Movie A2;Studio One;Prod A;yes
+2010;Movie B1;Studio Two;Prod B;yes
+2011;Movie B2;Studio Two;Prod B;yes
+1980;Movie C1;Studio Three;Prod C;yes
+1990;Movie C2;Studio Three;Prod C;yes
+1995;Movie D1;Studio Four;Prod D;yes
+2005;Movie D2;Studio Four;Prod D;yes
+2020;Movie F1;Studio Five;Prod F;yes
+2023;Movie F2;Studio Five;Prod F;yes
+2025;Movie F3;Studio Five;Prod F;yes
+1999;Loser Movie;Studio Six;Prod A, Prod C and Prod G;
+2002;Nominee Only;Studio Seven;Prod E;

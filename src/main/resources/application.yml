@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: golden-raspberry-awards
+
+  # Virtual Threads (Java 21 / JEP 444): cada requisição é atendida por uma
+  # thread virtual, melhorando a escalabilidade em cargas de I/O.
+  threads:
+    virtual:
+      enabled: true
+
+  # Banco de dados em memória embarcado (H2) - nenhuma instalação externa necessária
+  datasource:
+    url: jdbc:h2:mem:goldenraspberry;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# Caminho (classpath) do arquivo CSV carregado ao iniciar a aplicação
+application:
+  csv:
+    movies-file: classpath:Movielist.csv
+
+# Documentação OpenAPI / Swagger UI
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

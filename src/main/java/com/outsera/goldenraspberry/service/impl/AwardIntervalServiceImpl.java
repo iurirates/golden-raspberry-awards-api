@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+
 @Service
 @RequiredArgsConstructor
 public class AwardIntervalServiceImpl implements AwardIntervalService {
@@ -33,17 +34,20 @@ public class AwardIntervalServiceImpl implements AwardIntervalService {
             return new AwardIntervalsResponse(Collections.emptyList(), Collections.emptyList());
         }
 
-        int minInterval = intervals.stream().mapToInt(ProducerInterval::interval).min().orElseThrow();
-        int maxInterval = intervals.stream().mapToInt(ProducerInterval::interval).max().orElseThrow();
+        List<ProducerInterval> minList = new ArrayList<>();
+        List<ProducerInterval> maxList = new ArrayList<>();
+        int minVal = Integer.MAX_VALUE;
+        int maxVal = Integer.MIN_VALUE;
 
-        List<ProducerInterval> min = intervals.stream()
-                .filter(i -> i.interval() == minInterval)
-                .toList();
-        List<ProducerInterval> max = intervals.stream()
-                .filter(i -> i.interval() == maxInterval)
-                .toList();
+        for (ProducerInterval pi : intervals) {
+            int v = pi.interval();
+            if (v < minVal) { minVal = v; minList.clear(); }
+            if (v == minVal) minList.add(pi);
+            if (v > maxVal) { maxVal = v; maxList.clear(); }
+            if (v == maxVal) maxList.add(pi);
+        }
 
-        return new AwardIntervalsResponse(min, max);
+        return new AwardIntervalsResponse(minList, maxList);
     }
 
     private Map<String, TreeSet<Integer>> collectWinningYearsByProducer() {
